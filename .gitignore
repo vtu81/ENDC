@@ -1,0 +1,9 @@
+__pycache__
+*.pyc
+*.tar.gz
+.DS_Store
+
+checkpoints/MNIST/*
+!checkpoints/MNIST/narrow_target*_nobm.ckpt
+
+datasets/MNIST

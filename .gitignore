@@ -6,6 +6,8 @@ __pycache__
 checkpoints/MNIST/*
 !checkpoints/MNIST/narrow_target*_nobm.ckpt
 !checkpoints/FashionMNIST/narrow_target*_nobm.ckpt
+!checkpoints/CIFAR10/narrow_target*_nobm.ckpt
 
 datasets/MNIST
 datasets/FashionMNIST
+datasets/cifar-10*

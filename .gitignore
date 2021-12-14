@@ -4,6 +4,8 @@ __pycache__
 .DS_Store
 
 checkpoints/MNIST/*
+checkpoints/FashionMNIST/*
+checkpoints/CIFAR10/*
 !checkpoints/MNIST/narrow_target*_nobm.ckpt
 !checkpoints/FashionMNIST/narrow_target*_nobm.ckpt
 !checkpoints/CIFAR10/narrow_target*_nobm.ckpt

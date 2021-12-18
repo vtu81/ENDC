@@ -13,3 +13,6 @@ checkpoints/CIFAR10/*
 datasets/MNIST
 datasets/FashionMNIST
 datasets/cifar-10*
+
+models/*
+!models/narrow_*py

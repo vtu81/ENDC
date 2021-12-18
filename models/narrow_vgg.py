@@ -56,9 +56,8 @@ class narrow_VGG(nn.Module):
         return x
 
 
-def make_layers(cfg, batch_norm=False):
+def make_layers(cfg, in_channels=1, batch_norm=False):
     layers = []
-    in_channels = 1
     for v in cfg:
         if v == 'M':
             layers += [nn.MaxPool2d(kernel_size=2, stride=2)]
@@ -80,21 +79,23 @@ cfg = {
     'fashionmnist': [1, 1, 'M', 1, 1, 'M', 1, 1, 1, 'M1', 1, 1, 1, 'M', 1, 1, 1, 'M'],
     'fashionmnist_small': [1, 1, 'M', 1, 1, 'M'],
     'fashionmnist_large': [2, 2, 'M', 2, 2, 'M', 2, 2, 2, 'M1', 2, 2, 2, 'M1', 2, 2, 2, 'M1'],
+    # 'cifar10': [3, 3, 'M', 3, 3, 'M', 3, 3, 3, 'M', 3, 3, 3, 'M', 3, 3, 3, 'M'],
+    'cifar10': [2, 2, 'M', 2, 2, 'M', 2, 2, 2, 'M', 2, 2, 2, 'M', 2, 2, 1, 'M'],
 }
 
 
 
 def narrow_vgg16():
-    return narrow_VGG(make_layers(cfg['narrow'], batch_norm=True))
+    return narrow_VGG(make_layers(cfg['narrow'], in_channels=3, batch_norm=True))
 
 def narrow_mnist_vgg():
-    return narrow_VGG(make_layers(cfg['mnist'], batch_norm=False))
+    return narrow_VGG(make_layers(cfg['mnist'], in_channels=1, batch_norm=False))
 
 def narrow_fashionmnist_vgg():
-    return narrow_VGG(make_layers(cfg['fashionmnist'], batch_norm=False))
+    return narrow_VGG(make_layers(cfg['fashionmnist'], in_channels=1, batch_norm=False))
 
 def narrow_fashionmnist_small_vgg():
-    model = narrow_VGG(make_layers(cfg['fashionmnist_small'], batch_norm=False))
+    model = narrow_VGG(make_layers(cfg['fashionmnist_small'], in_channels=1, batch_norm=False))
     model.classifier = nn.Sequential(
         nn.Linear(49, 1),
         # nn.ReLU(True),
@@ -105,7 +106,7 @@ def narrow_fashionmnist_small_vgg():
     return model
 
 def narrow_fashionmnist_large_vgg():
-    model = narrow_VGG(make_layers(cfg['fashionmnist_large'], batch_norm=False))
+    model = narrow_VGG(make_layers(cfg['fashionmnist_large'], in_channels=1, batch_norm=False))
     model.classifier = nn.Sequential(
         nn.Linear(16, 1),
         # nn.ReLU(True),
@@ -113,6 +114,17 @@ def narrow_fashionmnist_large_vgg():
         # nn.ReLU(True),
     )
     model.use_classifier = True
+    return model
+
+def narrow_cifar10_vgg():
+    model = narrow_VGG(make_layers(cfg['cifar10'], in_channels=3, batch_norm=False))
+    # model.classifier = nn.Sequential(
+    #     nn.Linear(3, 1),
+    #     nn.ReLU(True),
+    #     nn.Linear(1, 1),
+    #     nn.ReLU(True),
+    # )
+    # model.use_classifier = True
     return model
 
 if __name__ == '__main__':

@@ -8,8 +8,9 @@ We propose the **Ensemble of Narrow DNN Chains (ENDC)** framework:
 2. then aggregate them together by voting to predict for the multiclassification task.
 
 Our ensemble framework could:
-- utilize the abstract interpretability of DNNs
-- while being 2-4 orders of magnitude smaller than normal DNN and more >6 times smaller than traditional ML models
+- utilize the abstract interpretability of DNNs,
+- outperform traditional ML significantly on CIFAR-10,
+- while being 2-4 orders of magnitude smaller than normal DNN and 6+ times smaller than traditional ML models,
 - furthermore compatible with full parallelism in both the training and deployment stage.
 
 Our empirical study shows that a narrow DNN chain could learn binary classifications well. Moreover, our experiments on three MNIST, Fashion-MNIST, CIFAR-10 confirm the potential power of ENDC. **Compared with traditional ML models, ENDC, with the smallest parameter number, could achieve similar accuracy on MNIST and Fashion-MNIST, and significantly better accuracy on CIFAR-10.**
